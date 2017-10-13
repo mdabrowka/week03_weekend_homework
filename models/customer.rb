@@ -11,4 +11,22 @@ require_relative("../db/sql_runner.rb")
       @funds = options['funds'].to_i
     end
 
+    def save()
+      sql = "
+      INSERT into customers
+      (name, funds) VALUES ($1, $2) RETURNING id"
+      values = [@name, @funds]
+      customer = SqlRunner.run(sql, values).first
+      @id = customer['id'].to_i
+    end
+
+    def self.all()
+      sql = "SELECT * FROM customers"
+      values = []
+      saved_customers = SqlRunner.run(sql, values)
+      result = saved_customers.map{|customer| Customer.new(customer)}
+      return result
+    end
+
+
   end
