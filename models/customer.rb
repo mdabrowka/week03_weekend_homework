@@ -49,7 +49,7 @@ require_relative("film.rb")
       SqlRunner.run(sql, values)
     end
 
-    def film
+    def list_films
       sql = "SELECT films.* FROM films
       INNER JOIN tickets
       ON films.id = tickets.film_id
@@ -60,5 +60,12 @@ require_relative("film.rb")
       return films
   end
 
+    # def pay_for_ticket
+    #   customers.funds -= films.price
+    # end
+
+     def film_number
+       return list_films.length
+     end
 
   end
