@@ -4,6 +4,9 @@ require_relative('../models/ticket.rb')
 
 require('pry')
 
+Customer.delete_all
+Film.delete_all
+
 
 customer1 = Customer.new({'name' => 'Flora',
   'funds' => '50'})

@@ -28,5 +28,17 @@ require_relative("../db/sql_runner.rb")
       return result
     end
 
+    def self.delete_all()
+      sql = "DELETE FROM customers"
+      values = []
+      SqlRunner.run(sql, values)
+    end
+
+    def delete
+      sql = "DELETE FROM customers
+      WHERE id = $1"
+      values = [@id]
+      SqlRunner.run(sql, values)
+    end
 
   end
