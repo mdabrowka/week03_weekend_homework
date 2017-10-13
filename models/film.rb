@@ -1,4 +1,5 @@
 require_relative("../db/sql_runner.rb")
+require_relative("customer.rb")
 
   class Film
     attr_reader :id
@@ -47,7 +48,19 @@ require_relative("../db/sql_runner.rb")
       SET (title, price) = ($1, $2) WHERE id = $3"
       values = [@title, @price, @id]
       SqlRunner.run(sql, values)
-
     end
+
+    def customer
+      sql = "SELECT customers.* FROM customers
+      INNER JOIN tickets
+      ON customers.id = tickets.customer_id
+      WHERE customer_id = $1"
+      values = [@id]
+      results = SqlRunner.run(sql, values)
+      customers = results.map{|customer| Customer.new(customer)}
+      return customers
+  end
+
+
 
   end
