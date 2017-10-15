@@ -65,10 +65,12 @@ require_relative("ticket.rb")
        return list_films.length
      end
 
-    #  def pay_for_ticket
-    #    return list_films
-
-
+      def pay_for_ticket
+        film_array = list_films
+        for film in film_array
+        return @funds - film.price
+         end
+      end
 
 
   end
