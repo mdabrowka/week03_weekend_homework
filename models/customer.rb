@@ -68,8 +68,11 @@ require_relative("ticket.rb")
       def pay_for_ticket
         film_array = list_films
         for film in film_array
-        return @funds - film.price
+          result = @funds - film.price
+        return result
          end
+        @funds = result
+        update
       end
 
 
